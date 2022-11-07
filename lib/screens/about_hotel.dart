@@ -14,10 +14,11 @@ class AboutHotel extends StatelessWidget {
   Future<List<Address>> getHotelAddress(String uuid) async {
     try {
       var response = await Dio().get('https://run.mocky.io/v3/$uuid');
+      print(response.data);
       if (response.statusCode == 200) {
-        Map hotelData = jsonDecode(response.data);
-        List<dynamic> hotelInfo = hotelData["address"];
-        return hotelInfo.map((json) => Address.fromJson(json)).toList();
+        var data = response.data;
+        List<Address> address = data.map<Address>((address) => Address.fromJson(address)).toList();
+        return address;
       } else {
         throw Exception("Ошибка! Код - ${response.statusCode}");
       }
