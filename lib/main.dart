@@ -66,14 +66,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<List<Hotel>> getHotelList() async {
     try {
-      var response = await Dio()
-          .get('https://run.mocky.io/v3/ac888dc5-d193-4700-b12c-abb43e289301');
+      var response = await Dio().get('https://run.mocky.io/v3/ac888dc5-d193-4700-b12c-abb43e289301');
       var data = response.data;
       hotels = data.map<Hotel>((hotels) => Hotel.fromJson(hotels)).toList();
+      return hotels;
     } on DioError catch (e) {
-      print(e.error);
+      return e.error;
     }
-    return hotels;
   }
 
   void _switchToList() {
