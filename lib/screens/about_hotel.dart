@@ -184,6 +184,7 @@ class _AboutHotelState extends State<AboutHotel> {
                                                 return Text(
                                                   info.services.paid[index],
                                                   maxLines: 2,
+                                                  textAlign: TextAlign.center,
                                                 );
                                               },
                                             ),
@@ -201,6 +202,7 @@ class _AboutHotelState extends State<AboutHotel> {
                                                 return Text(
                                                   info.services.free[index],
                                                   maxLines: 2,
+                                                  textAlign: TextAlign.center,
                                                 );
                                               },
                                             ),
