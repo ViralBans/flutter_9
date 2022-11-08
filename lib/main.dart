@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_9/screens/about_hotel.dart';
 import 'package:go_router/go_router.dart';
 
-import 'models/hotel.dart';
+import 'models/hotel_model.dart';
 
 void main() {
   runApp(MyApp());
@@ -61,17 +61,18 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  late List<Hotel> hotels;
+  late List<HotelModel> hotels;
   bool isListView = true;
 
-  Future<List<Hotel>> getHotelList() async {
+  Future<List<HotelModel>> getHotelList() async {
     try {
-      var response = await Dio().get('https://run.mocky.io/v3/ac888dc5-d193-4700-b12c-abb43e289301');
-      var data = response.data;
-      hotels = data.map<Hotel>((hotels) => Hotel.fromJson(hotels)).toList();
+      Response response = await Dio()
+          .get('https://run.mocky.io/v3/ac888dc5-d193-4700-b12c-abb43e289301');
+      hotels =
+          response.data.map<HotelModel>((hotels) => HotelModel.fromJson(hotels)).toList();
       return hotels;
     } on DioError catch (e) {
-      return e.error;
+      throw Exception(e.error);
     }
   }
 

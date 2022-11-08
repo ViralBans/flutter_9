@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'hotel_address.dart';
+part of 'hotel_info_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
@@ -24,15 +24,15 @@ Map<String, dynamic> _$HotelInfoToJson(HotelInfo instance) => <String, dynamic>{
       'poster': instance.poster,
       'price': instance.price,
       'rating': instance.rating,
-      'address': instance.address,
-      'services': instance.services,
+      'address': instance.address.toJson(),
+      'services': instance.services.toJson(),
       'photos': instance.photos,
     };
 
 Address _$AddressFromJson(Map<String, dynamic> json) => Address(
       country: json['country'] as String,
-      street: json['street'] as String,
-      city: json['city'] as String,
+      street: json['street'] as String? ?? 'Не указано',
+      city: json['city'] as String? ?? 'Не указано',
       zipcode: json['zip_code'] as int,
       coords: Coords.fromJson(json['coords'] as Map<String, dynamic>),
     );
@@ -42,7 +42,7 @@ Map<String, dynamic> _$AddressToJson(Address instance) => <String, dynamic>{
       'street': instance.street,
       'city': instance.city,
       'zip_code': instance.zipcode,
-      'coords': instance.coords,
+      'coords': instance.coords.toJson(),
     };
 
 Coords _$CoordsFromJson(Map<String, dynamic> json) => Coords(

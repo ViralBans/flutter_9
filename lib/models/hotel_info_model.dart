@@ -1,8 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'hotel_address.g.dart';
+part 'hotel_info_model.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class HotelInfo {
   final String uuid, name, poster;
   final double price, rating;
@@ -16,9 +16,13 @@ class HotelInfo {
   Map<String, dynamic> toJson() => _$HotelInfoToJson(this);
 }
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class Address {
-  final String country, street, city;
+  final String country;
+  @JsonKey(defaultValue: 'Не указано')
+  final String street;
+  @JsonKey(defaultValue: 'Не указано')
+  final String city;
   @JsonKey(name: 'zip_code')
   final int zipcode;
   final Coords coords;
